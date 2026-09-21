@@ -9,7 +9,12 @@
 				"visible_bounds_width": 4,
 				"visible_bounds_height": 2.5,
 				"visible_bounds_offset": [0, 0.75, 0]
-			},
+			  },
+            "tritium": {
+              "default_color": "#00FF00",
+              "can_edit": true,
+              "bones": ["sight_illuminated", "rear_sight_illuminated"]
+              },         
 			"bones": [
 				{
 					"name": "root",
