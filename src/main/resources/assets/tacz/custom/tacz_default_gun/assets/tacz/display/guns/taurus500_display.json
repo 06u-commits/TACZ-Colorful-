@@ -37,6 +37,11 @@
     "shoot": "tacz:taurus500/taurus500_shoot",
     "shoot_3p": "tacz:taurus500/taurus500_shoot_3p"
   },
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["sight_illuminated","hb_sight_illuminated"]  
+  },
   "offhand_show": {
     "pos": [4, 13, -2],
     "rotate": [-90, -35, 90],
