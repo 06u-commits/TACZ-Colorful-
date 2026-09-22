@@ -13,6 +13,7 @@ import org.joml.Quaternionf;
 
 import javax.annotation.Nullable;
 import java.util.Random;
+import java.util.function.IntSupplier;
 
 @OnlyIn(Dist.CLIENT)
 public class BedrockPart {
@@ -78,7 +79,38 @@ public class BedrockPart {
             }
         }
     }
+    
+    @Nullable
+    public IntSupplier tintColor;
+    
+    public void render(PoseStack poseStack, ItemDisplayContext transformType, VertexConsumer consumer, int light, int overlay, float red, float green, float blue, float alpha) {
+        int cubePackedLight = light;
+        if (illuminated) {
+            cubePackedLight = LightTexture.pack(15, 15);
+        }
+        float r = red, g = green, b = blue;
+        if (tintColor != null) {
+            int color = tintColor.getAsInt();
+            r = ((color >> 16) & 0xFF) / 255.0F;
+            g = ((color >> 8) & 0xFF) / 255.0F;
+            b = (color & 0xFF) / 255.0F;
+        }
+        if (this.visible) {
+            if (!this.cubes.isEmpty() || !this.children.isEmpty()) {
+                poseStack.pushPose();
+                this.translateAndRotateAndScale(poseStack);
+                this.compile(poseStack.last(), consumer, cubePackedLight, overlay, r, g, b, alpha);
 
+                for (BedrockPart part : this.children) {
+                // children get the ORIGINAL red/green/blue, not r/g/b — the override doesn't propagate
+                    part.render(poseStack, transformType, consumer, cubePackedLight, overlay, red, green, blue, alpha);
+                }
+
+                poseStack.popPose();
+            }
+        }
+    }
+    
     public void translateAndRotateAndScale(PoseStack poseStack) {
         poseStack.translate(this.offsetX, this.offsetY, this.offsetZ);
         poseStack.translate((this.x / 16.0F), (this.y / 16.0F), (this.z / 16.0F));
