@@ -38,6 +38,11 @@
     "silence_3p": "tacz:mk23/mk23_silence_3p",
     "fire_select": ""
   },
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["fore_sight_illuminated","rear_sight_illuminated"]
+  },
   "offhand_show": {
     "pos": [4, 13, -1],
     "rotate": [-90, -35, 90],
