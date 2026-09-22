@@ -39,6 +39,11 @@
     "draw": "tacz:spr15hb/spr15hb_draw",
     "put_away": "tacz:spr15hb/spr15hb_put_away"
   },
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["fore_sight_illuminated","rear_sight_illuminated"]  
+  },
   "offhand_show": {
     "pos": [1, 19, 4],
     "rotate": [0, 0, 50],
