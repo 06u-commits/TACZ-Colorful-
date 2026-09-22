@@ -34,6 +34,11 @@
     "silence": "tacz:cz75/cz75_silence",
     "silence_3p": "tacz:cz75/cz75_silence_3p"
   },
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["sight_illuminated","foresight_illuminated"]
+  },  
   "offhand_show": {
     "pos": [4, 13, -1],
     "rotate": [-90, -35, 90],
