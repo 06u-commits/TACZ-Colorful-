@@ -37,7 +37,7 @@
   "tritium": {
     "default_color": "#00FF00",
     "can_edit": true,
-    "bones": ["sight_illuminated","foresight_illuminated"]
+    "bones": ["sight_illuminated","frontsight_illuminated"]
   },  
   "offhand_show": {
     "pos": [4, 13, -1],
