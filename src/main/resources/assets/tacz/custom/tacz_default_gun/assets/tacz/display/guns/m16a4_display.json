@@ -43,6 +43,11 @@
     "draw": "tacz:m16a4/m16a4_draw",
     "put_away": "tacz:m16a4/m16a4_put_away"
   },
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["sight_illuminated","sight_illuminated2"]  
+  },
   "offhand_show": {
     "pos": [1, 19, 4],
     "rotate": [0, 0, 50],
