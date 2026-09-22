@@ -51,6 +51,11 @@
     "melee_push": "tacz:melee_stock/melee_stock_01",
     "melee_stock": "tacz:melee_stock/melee_stock_03"
   },
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["rear_illuminated","rear2_illuminated","sight2_illuminated","sight_illuminated"]  
+  },
   "offhand_show": {
     "pos": [0, 19, 4],
     "rotate": [0, 0, 60],
