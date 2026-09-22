@@ -36,6 +36,11 @@
     "silence": "tacz:glock_17/glock17_silence",
     "silence_3p": "tacz:glock_17/glock17_silence_3p"
   },
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["sight_illuminated"]
+  }, 
   "offhand_show": {
     "pos": [4, 13, -1],
     "rotate": [-90, -35, 90],
