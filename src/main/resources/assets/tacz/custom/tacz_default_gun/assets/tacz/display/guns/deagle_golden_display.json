@@ -49,6 +49,11 @@
     "silence": "tacz:deagle/deagle_silence",
     "silence_3p": "tacz:deagle/deagle_silence_3p"
   },
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["rear_sight_illuminated","fore_sight_illuminated"]
+  }, 
   "offhand_show": {
     "pos": [4, 13, -2],
     "rotate": [-90, -35, 90],
