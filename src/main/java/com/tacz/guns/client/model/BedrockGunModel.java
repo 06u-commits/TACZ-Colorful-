@@ -39,6 +39,13 @@ public class BedrockGunModel extends BedrockAnimatedModel {
     private final EnumMap<AttachmentType, ItemStack> currentAttachmentItem = Maps.newEnumMap(AttachmentType.class);
     private final Set<String> adapterToRender = Sets.newHashSet();
     private final ArrayList<ShellRender> shellRenderList = new ArrayList<>();
+	private static final Set<String> TRITIUM_EXCLUDED_BONES = Set.of(
+        "safety_illuminated", "marker_illuminated", "marker_1_illuminated",
+        "lines_illuminated", "muzzle_illuminated", "barrel_illuminated"
+   	);
+	private static final Set<String> TRITIUM_EXTRA_BONES = Set.of(
+    	    "sight_illuminated2", "fore_sight_fold", "rear_sight_fold"
+	);
 
     // 第一人称机瞄摄像机定位组的路径
     protected @Nullable List<BedrockPart> ironSightPath;
@@ -109,6 +116,9 @@ public class BedrockGunModel extends BedrockAnimatedModel {
         this.setFunctionalRenderer(HANDGUARD_TACTICAL_NODE, this::handguardTacticalRender);
         // 缓存其他定位组
         this.cacheOtherPath();
+		
+		this.cacheTritiumParts();
+	
         // 缓存改装 UI 下各个配件的特写视角定位组
         this.cacheRefitAttachmentViewPath();
         // 缓存抛壳窗
@@ -130,7 +140,17 @@ public class BedrockGunModel extends BedrockAnimatedModel {
         laserBeamPaths = getPath(modelMap.get("laser_beam"));
         root = Optional.ofNullable(modelMap.get(ROOT_NODE)).map(ModelRendererWrapper::getModelRenderer).orElse(null);
     }
-
+	private void cacheTritiumParts() {
+    	for (ModelRendererWrapper wrapper : modelMap.values()) {
+        	BedrockPart part = wrapper.getModelRenderer();
+        	if (part.name == null) continue;
+        	boolean isTritium = (part.name.endsWith("_illuminated") && !TRITIUM_EXCLUDED_BONES.contains(part.name))
+            	    || TRITIUM_EXTRA_BONES.contains(part.name);
+        	if (isTritium) {
+            	part.tintColor = () -> TritiumColorUtil.getTritiumColor(currentGunItem);
+        	}
+    	}
+	}
     private void cacheRefitAttachmentViewPath() {
         for (AttachmentType type : AttachmentType.values()) {
             if (type == AttachmentType.NONE) {
