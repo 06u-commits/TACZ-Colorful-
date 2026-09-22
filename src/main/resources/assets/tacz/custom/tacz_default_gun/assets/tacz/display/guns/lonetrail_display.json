@@ -47,7 +47,12 @@
     "shoot": "tacz:lonetrail/breach_shoot",
     "shoot_3p": "tacz:lonetrail/breach_shoot_3p"
   },
- "offhand_show": {
+  "tritium": {
+    "default_color": "#00FF00",
+    "can_edit": true,
+    "bones": ["rail_sight_illuminated"]  
+  },
+  "offhand_show": {
     "pos": [4, 13, -2],
     "rotate": [-90, -35, 90],
     "scale": [0.5, 0.5, 0.5]
