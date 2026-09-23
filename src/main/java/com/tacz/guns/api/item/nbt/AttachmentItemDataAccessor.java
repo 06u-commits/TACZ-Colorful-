@@ -16,6 +16,7 @@ public interface AttachmentItemDataAccessor extends IAttachment {
     String SKIN_ID_TAG = "Skin";
     String ZOOM_NUMBER_TAG = "ZoomNumber";
     String LASER_COLOR_TAG = "LaserColor";
+    String TRITIUM_COLOR_TAG = "TritiumColor";
 
     // 仅检查给定的 CompoundTag 是否具有配件 ID ，不校验其是否存在
     static boolean isAttachmentLike(CompoundTag tag) {
@@ -114,5 +115,31 @@ public interface AttachmentItemDataAccessor extends IAttachment {
     default void setLaserColor(ItemStack attachmentStack, int color) {
         CompoundTag nbt = attachmentStack.getOrCreateTag();
         nbt.putInt(LASER_COLOR_TAG, color);
+ 
     }
+    
+    @Override
+    default boolean hasCustomTritiumColor(ItemStack attachmentStack) {
+        CompoundTag nbt = attachmentStack.getOrCreateTag();
+        return nbt.contains(TRITIUM_COLOR_TAG, Tag.TAG_INT);
+    }
+
+    @Override
+    default int getTritiumColor(ItemStack attachmentStack) {
+        CompoundTag nbt = attachmentStack.getOrCreateTag();
+        if (!hasCustomTritiumColor(attachmentStack)) {
+            return 0x00FF00;
+        }
+        return nbt.getInt(TRITIUM_COLOR_TAG);
+    }
+
+    @Override
+    default void setTritiumColor(ItemStack attachmentStack, int color) {
+        CompoundTag nbt = attachmentStack.getOrCreateTag();
+        nbt.putInt(TRITIUM_COLOR_TAG, color);
+    }
+
 }
+
+
+
