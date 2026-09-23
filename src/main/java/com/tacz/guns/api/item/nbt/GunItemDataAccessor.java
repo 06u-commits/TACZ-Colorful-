@@ -33,6 +33,7 @@ public interface GunItemDataAccessor extends IGun {
     String GUN_ATTACHMENT_LOCK = "AttachmentLock";
     String GUN_DISPLAY_ID_TAG = "GunDisplayId";
     String LASER_COLOR_TAG = "LaserColor";
+    String TRITIUM_COLOR_TAG = "TritiumColor";
     String GUN_OVERHEAT_TAG = "HeatAmount";
     String GUN_OVERHEAT_LOCK_TAG = "OverHeated";
 
@@ -382,9 +383,28 @@ public interface GunItemDataAccessor extends IGun {
         nbt.putInt(LASER_COLOR_TAG, color);
     }
 
-    /**
-     * Heat Data
-     */
+
+    @Override
+    default boolean hasCustomTritiumColor(ItemStack gun) {
+        CompoundTag nbt = gun.getOrCreateTag();
+        return nbt.contains(TRITIUM_COLOR_TAG, Tag.TAG_INT);
+    }
+
+    @Override
+    default int getTritiumColor(ItemStack gun) {
+        CompoundTag nbt = gun.getOrCreateTag();
+        if (!hasCustomTritiumColor(gun)) {
+            return 0x00FF00;
+        }
+        return nbt.getInt(TRITIUM_COLOR_TAG);
+    }
+
+    @Override
+    default void setTritiumColor(ItemStack gun, int color) {
+        CompoundTag nbt = gun.getOrCreateTag();
+        nbt.putInt(TRITIUM_COLOR_TAG, color);
+    }
+
     @Override
     default boolean hasHeatData(ItemStack gun) {
         return gun.getOrCreateTag().contains(GUN_OVERHEAT_TAG, Tag.TAG_FLOAT);
