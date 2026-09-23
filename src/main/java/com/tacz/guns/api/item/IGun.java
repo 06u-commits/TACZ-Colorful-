@@ -379,6 +379,13 @@ public interface IGun {
 
     void setLaserColor(ItemStack gun, int color);
 
+
+    boolean hasCustomTritiumColor(ItemStack gun);
+
+    int getTritiumColor(ItemStack gun);
+
+    void setTritiumColor(ItemStack gun, int color);
+
     /**
      * Heat Data
      */
