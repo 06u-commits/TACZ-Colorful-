@@ -69,4 +69,10 @@ public interface IAttachment {
     int getLaserColor(ItemStack attachmentStack);
 
     void setLaserColor(ItemStack attachmentStack, int color);
+
+    boolean hasCustomTritiumColor(ItemStack attachmentStack);
+
+    int getTritiumColor(ItemStack attachmentStack);
+
+    void setTritiumColor(ItemStack attachmentStack, int color);
 }
