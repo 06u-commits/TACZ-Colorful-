@@ -14,6 +14,7 @@ import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.network.message.ClientMessageLaserColor;
+import com.tacz.guns.network.message.ClientMessageTritiumColor;
 import com.tacz.guns.network.message.ClientMessageRefitGun;
 import com.tacz.guns.network.message.ClientMessageUnloadAttachment;
 import com.tacz.guns.sound.SoundManager;
@@ -209,10 +210,18 @@ public class GunRefitScreen extends Screen {
                                     this.addRenderableWidget(hsvSliderGroup.getHueSlider());
                                     this.addRenderableWidget(hsvSliderGroup.getSaturationSlider());
                                 }});
-                }
-                continue;
+                        TimelessAPI.getGunDisplay(player.getMainHandItem())
+                            .map(GunDisplayInstance::getTritiumConfig)
+                            .ifPresent(tritiumConfig -> {
+                                if (tritiumConfig.canEdit()) {
+                                    TritiumHSVSliderGroup tritiumSliderGroup = new TritiumHSVSliderGroup(width-140, height-108, 120, 16, inventory, inventory.selected);
+                                    this.addRenderableWidget(tritiumSliderGroup.getHueSlider());
+                                    this.addRenderableWidget(tritiumSliderGroup.getSaturationSlider());
+                                }});
             }
-            GunAttachmentSlot button = new GunAttachmentSlot(startX, startY, type, inventory.selected, inventory, b -> {
+            continue;
+        }
+}AttachmentSlot button = new GunAttachmentSlot(startX, startY, type, inventory.selected, inventory, b -> {
                 AttachmentType buttonType = ((GunAttachmentSlot) b).getType();
                 // 如果这个槽位不允许安装配件，则默认退回概览，不选中槽位。
                 if (!((GunAttachmentSlot) b).isAllow()) {
