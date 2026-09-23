@@ -288,6 +288,8 @@ public class GunRefitScreen extends Screen {
             if (player.getMainHandItem().getItem() instanceof IGun) {
                 ClientMessageLaserColor message = new ClientMessageLaserColor(gun, player.getInventory().selected);
                 NetworkHandler.CHANNEL.sendToServer(message);
+                ClientMessageTritiumColor tritiumMessage = new ClientMessageTritiumColor(gun, player.getInventory().selected);
+                NetworkHandler.CHANNEL.sendToServer(tritiumMessage);
             }
         }
         super.onClose();
