@@ -99,8 +99,9 @@ public class GunDisplayInstance {
     private AmmoCountStyle ammoCountStyle = AmmoCountStyle.NORMAL;
     private DamageStyle damageStyle = DamageStyle.PER_PROJECTILE;
     private @Nullable LaserConfig laserConfig;
+    private @Nullable TritiumConfig tritiumConfig;
     private boolean enableTransparency;
-
+    
     GunDisplayInstance(ResourceLocation displayId, GunDisplay display) {
         this.displayId = displayId;
         this.display = Objects.requireNonNull(display, "display");
@@ -374,6 +375,7 @@ public class GunDisplayInstance {
         ammoCountStyle = display.getAmmoCountStyle();
         damageStyle = display.getDamageStyle();
         laserConfig = display.getLaserConfig();
+        tritiumConfig = display.getTritiumConfig();
         enableTransparency = display.enablesTransparency();
     }
 
@@ -760,6 +762,10 @@ public class GunDisplayInstance {
         return laserConfig;
     }
 
+    @Nullable
+    public TritiumConfig getTritiumConfig() {         
+        return tritiumConfig;
+    }
     public boolean enablesTransparency() {
         return enableTransparency;
     }
