@@ -98,6 +98,8 @@ public class GunDisplay implements IDisplay {
     private EnumMap<FireMode, ControllableData> controllableData = Maps.newEnumMap(FireMode.class);
     @SerializedName("laser")
     private LaserConfig laserConfig;
+    @SerializedName("tritium")
+    private TritiumConfig tritiumConfig;
 
     /**
      * @since 1.1.8
@@ -242,6 +244,11 @@ public class GunDisplay implements IDisplay {
     @Nullable
     public LaserConfig getLaserConfig() {
         return laserConfig;
+    }
+
+    @Nullable
+    public TritiumConfig getTritiumConfig() {
+        return tritiumConfig;
     }
 
     public boolean enablesTransparency() {
