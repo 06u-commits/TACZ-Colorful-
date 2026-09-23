@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.awt.*;
 
-public class TririumConfig {
+public class TritiumConfig {
     private Integer defaultColor;
 
     @Expose
