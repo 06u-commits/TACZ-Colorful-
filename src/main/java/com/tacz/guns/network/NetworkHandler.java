@@ -101,7 +101,9 @@ public class NetworkHandler {
 
         CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessageLaserColor.class, ClientMessageLaserColor::encode, ClientMessageLaserColor::decode, ClientMessageLaserColor::handle,
                 Optional.of(NetworkDirection.PLAY_TO_SERVER));
-
+        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessageTritiumColor.class, ClientMessageTritiumColor::encode, ClientMessageTritiumColor::decode, ClientMessageTritiumColor::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        
         registerAcknowledge();
         registerHandshakeMessage(ServerMessageSyncedEntityDataMapping.class, null);
     }
